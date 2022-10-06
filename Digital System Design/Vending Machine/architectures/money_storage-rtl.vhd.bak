@@ -1,0 +1,133 @@
+doarchitecture rtl of money_storage is
+
+	-- Components --
+	component coin_storage is
+	generic(INIT_COUNTS : init_count_t;
+        	INIT_SUMS   : init_sum_t);
+	port(clk       : in std_logic;
+	     reset     : in std_logic;
+	     en        : in std_logic;
+	     add_coin  : in std_logic;
+	     rem_coin  : in std_logic;
+	     coin_type : in std_logic_vector(4 downto 0);
+	     count     : out std_logic_vector(4 downto 0);
+	     sum       : out std_logic_vector(15 downto 0);
+	     fault     : out std_logic);
+	end component coin_storage;
+
+	component storage_ctl is
+	port(clk                   : in std_logic;
+	     reset                 : in std_logic;
+	     insert_coin           : in std_logic;
+	     calc_change           : in std_logic;
+	     give_change           : in std_logic;
+	     release_coins         : in std_logic;
+	     merge_coins           : in std_logic;
+	     in_coin_type          : in std_logic_vector(4 downto 0);
+	     price                 : in std_logic_vector(15 downto 0);
+	     show_change           : in std_logic;
+	     zero                  : out std_logic;
+	     negative              : out std_logic;
+	     cmd_served            : in std_logic;
+	     cmd_complete          : out std_logic;
+	     main_storage_count    : in std_logic_vector(4 downto 0);
+	     main_storage_sum      : in std_logic_vector(15 downto 0);
+	     main_storage_fault    : in std_logic;
+	     temp_storage_count    : in std_logic_vector(4 downto 0);
+	     temp_storage_sum      : in std_logic_vector(15 downto 0);
+	     temp_storage_fault    : in std_logic;
+	     cptr                  : out std_logic_vector(4 downto 0);
+	     main_storage_en       : out std_logic;
+	     main_storage_add_coin : out std_logic;
+	     main_storage_rem_coin : out std_logic;
+	     temp_storage_en       : out std_logic;
+	     temp_storage_add_coin : out std_logic;
+	     temp_storage_rem_coin : out std_logic;
+	     disp_on               : out std_logic;
+	     disp_sum              : out std_logic_vector(15 downto 0);
+	     change_count_2        : out std_logic_vector(4 downto 0);
+	     change_count_1        : out std_logic_vector(4 downto 0);
+	     change_count_05       : out std_logic_vector(4 downto 0);
+	     change_count_02       : out std_logic_vector(4 downto 0));
+	end component storage_ctl;
+
+	signal s_main_storage_count    : std_logic_vector(4 downto 0);
+	signal s_main_storage_sum      : std_logic_vector(15 downto 0);
+	signal s_main_storage_fault    : std_logic;
+	signal s_temp_storage_count    : std_logic_vector(4 downto 0);
+	signal s_temp_storage_sum      : std_logic_vector(15 downto 0);
+	signal s_temp_storage_fault    : std_logic;
+	signal s_cptr                  : std_logic_vector(4 downto 0);
+	signal s_main_storage_en       : std_logic;
+	signal s_main_storage_add_coin : std_logic;
+	signal s_main_storage_rem_coin : std_logic;
+	signal s_temp_storage_en       : std_logic;
+	signal s_temp_storage_add_coin : std_logic;
+	signal s_temp_storage_rem_coin : std_logic;
+
+	constant temp_init_counts : init_count_t := (0, 0, 0, 0, 0);
+    	constant temp_init_sums   : init_sum_t := (x"0000", x"0000", x"0000", x"0000", x"0000");
+begin
+
+	temp_storage : coin_storage
+	generic map(	INIT_COUNTS	=> temp_init_counts,
+			INIT_SUMS	=> temp_init_sums)
+	port map(	clk		=> clk,
+			reset		=> reset,
+			en		=> s_temp_storage_en,
+			add_coin	=> s_temp_storage_add_coin,
+			rem_coin	=> s_temp_storage_rem_coin,
+			coin_type	=> s_cptr,
+			count		=> s_temp_storage_count,
+			sum		=> s_temp_storage_sum,
+			fault		=> s_temp_storage_fault);
+
+	main_storage : coin_storage
+	generic map(	INIT_COUNTS	=> main_init_counts,
+			INIT_SUMS	=> main_init_sums)
+	port map(	clk		=> clk,
+			reset		=> reset,
+			en		=> s_main_storage_en,
+			add_coin	=> s_main_storage_add_coin,
+			rem_coin	=> s_main_storage_rem_coin,
+			coin_type	=> s_cptr,
+			count		=> s_main_storage_count,
+			sum		=> s_main_storage_sum,
+			fault		=> s_main_storage_fault);
+
+	control : storage_ctl
+	port map(	clk 			=> clk,
+			reset 			=> reset,
+			insert_coin		=> insert_coin,
+			calc_change		=> calc_change,
+			give_change		=> give_change,
+			release_coins		=> release_coins,
+			merge_coins		=> merge_coins,
+			in_coin_type		=> in_coin_type,
+			price			=> price,
+			show_change		=> show_change,
+			zero			=> zero,
+			negative		=> negative,
+			cmd_served 		=> cmd_served,
+			cmd_complete 		=> cmd_complete,
+			main_storage_count	=> s_main_storage_count,
+			main_storage_sum	=> s_main_storage_sum,
+			main_storage_fault	=> s_main_storage_fault,
+			temp_storage_count	=> s_temp_storage_count,
+			temp_storage_sum	=> s_temp_storage_sum,
+			temp_storage_fault	=> s_temp_storage_fault,
+			cptr			=> s_cptr,
+			main_storage_en		=> s_main_storage_en,
+			main_storage_add_coin	=> s_main_storage_add_coin,
+			main_storage_rem_coin	=> s_main_storage_rem_coin,
+			temp_storage_en		=> s_temp_storage_en,
+			temp_storage_add_coin	=> s_temp_storage_add_coin,
+			temp_storage_rem_coin	=> s_temp_storage_rem_coin,
+			disp_on 		=> disp_on,
+			disp_sum 		=> disp_sum,
+			change_count_2 		=> change_count_2,
+			change_count_1 		=> change_count_1,
+			change_count_05		=> change_count_05,
+			change_count_02 	=> change_count_02);
+
+end architecture rtl; 

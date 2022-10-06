@@ -1,0 +1,53 @@
+architecture rtl of timed_button is
+
+	-- Components --
+	component debouncer is
+	port(	clk      : in std_logic;
+		button   : in std_logic;
+		clear    : in std_logic;
+		button_o : out std_logic);
+	end component debouncer;
+
+	component timer is
+	generic(FCLK : natural);
+	port(	clk     : in std_logic;
+		clear   : in std_logic;
+		en      : in std_logic;
+		timeout : in std_logic_vector(4 downto 0);
+		pulse   : out std_logic;
+		done    : out std_logic);
+	end component timer;
+
+	-- Signals --
+	signal s_done	: std_logic;
+	signal s_pulse 	: std_logic;
+	signal s_en	: std_logic;
+	signal s_second_clear 	: std_logic;
+	signal s_debounce_clear : std_logic;
+	signal s_timer_clear	: std_logic;
+	signal s_did_clear	: std_logic;
+	
+begin
+
+	mydebouncer : debouncer
+	port map(	clk		=> clk,
+			button		=> button,
+			clear		=> s_debounce_clear,
+			button_o	=> button_o);
+	
+	mytimer : timer
+	generic map(	FCLK		=> 10)
+	port map(	clk		=> clk,
+			clear		=> s_timer_clear,
+			en		=> s_en,
+			timeout		=> "00001",
+			pulse		=> s_pulse,
+			done		=> s_done);
+			
+	s_debounce_clear <= '1' when clear = '1' or s_second_clear = '1' else '0';
+	s_second_clear <= '1' when s_en = '1' and s_done = '0' else '0';
+	s_en <= '1' when clear = '0' and s_did_clear = '1' else '0';
+	s_did_clear <= '1' when clear = '1' and button = '1' else '0' when s_done = '1';
+	s_timer_clear <= '1' when s_done = '1' else '0';
+	
+end architecture rtl;

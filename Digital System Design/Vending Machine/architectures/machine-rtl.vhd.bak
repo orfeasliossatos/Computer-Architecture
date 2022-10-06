@@ -1,0 +1,339 @@
+architecture rtl of machine is
+
+	-- COMPONENTS -- 
+	component main_fsm is
+	    port(
+		clk 			: in std_logic;
+		reset 			: in std_logic;
+		accept 			: in std_logic;
+		accept_clear 		: out std_logic;
+		cancel 			: in std_logic;
+		cancel_clear 		: out std_logic;
+		yes 			: in std_logic;
+		yes_clear 		: out std_logic;
+		no 			: in std_logic;
+		no_clear 		: out std_logic;
+		clear_choices 		: out std_logic;
+		in_coin_type 		: in std_logic_vector(4 downto 0);
+		drink_type 		: in std_logic_vector(4 downto 0);
+		available 		: in std_logic;
+		base_price		: in std_logic_vector(15 downto 0);
+		drink_type_o		: out std_logic_vector(4 downto 0);
+		pour_cmd_complete	: in std_logic;
+		pour_cmd_served		: out std_logic;
+		zero 			: in std_logic;
+		negative 		: in std_logic;
+		money_cmd_complete 	: in std_logic;
+		money_cmd_served	: out std_logic;
+		insert_coin		: out std_logic; 
+		calc_change		: out std_logic; 
+		give_change		: out std_logic; 
+		release_coins 		: out std_logic; 
+		merge_coins		: out std_logic; 
+		show_change		: out std_logic;
+		coin_type 		: out std_logic_vector(4 downto 0);
+		final_price     	: out std_logic_vector(15 downto 0);
+		msg			: out std_logic_vector(2 downto 0));
+	end component;
+
+	component money_storage is
+	    port(
+		clk                   : in std_logic;
+		reset                 : in std_logic;
+		insert_coin           : in std_logic;
+		calc_change           : in std_logic;
+		give_change           : in std_logic;
+		release_coins         : in std_logic;
+		merge_coins           : in std_logic;
+		in_coin_type          : in std_logic_vector(4 downto 0);
+		price                 : in std_logic_vector(15 downto 0);
+		show_change           : in std_logic;
+		zero                  : out std_logic;
+		negative              : out std_logic;
+		cmd_served            : in std_logic;
+		cmd_complete          : out std_logic;
+		disp_on               : out std_logic;
+		disp_sum              : out std_logic_vector(15 downto 0);
+		change_count_2        : out std_logic_vector(4 downto 0);
+		change_count_1        : out std_logic_vector(4 downto 0);
+		change_count_05       : out std_logic_vector(4 downto 0);
+		change_count_02       : out std_logic_vector(4 downto 0));
+	end component;
+	
+	
+	component drink_preparation is
+	    port(
+		clk          : in std_logic;
+		reset        : in std_logic;
+		drink_type   : in std_logic_vector(4 downto 0);
+		available    : out std_logic;
+		price        : out std_logic_vector(15 downto 0);
+		cmd_served   : in std_logic;
+		cmd_complete : out std_logic;
+		led_out      : out std_logic);
+	end component;
+	
+	component timed_button is
+	    port(
+		clk      : in std_logic;
+		button   : in std_logic;
+		clear    : in std_logic;
+		button_o : out std_logic);
+	end component;
+
+	component led_driver is
+	    port(
+		msg             : in std_logic_vector(2 downto 0);
+		change_count_2  : in std_logic_vector(4 downto 0);
+		change_count_1  : in std_logic_vector(4 downto 0);
+		change_count_05 : in std_logic_vector(4 downto 0);
+		change_count_02 : in std_logic_vector(4 downto 0);
+		progress_led    : in std_logic;
+		leds            : out std_logic_vector(107 downto 0));
+	end component;
+
+	component disp_driver is
+	    port(
+		en          : in std_logic;
+		num         : in std_logic_vector(15 downto 0);
+		whole_disp  : out std_logic_vector(7 downto 0);
+		frac_disp_u : out std_logic_vector(7 downto 0);
+		frac_disp_l : out std_logic_vector(7 downto 0));
+	end component;
+
+
+	-- OUTPUT SIGNALS --
+	signal s_disp_2		: std_logic_vector(7 downto 0);
+	signal s_disp_1		: std_logic_vector(7 downto 0);
+	signal s_disp_0 	: std_logic_vector(7 downto 0);
+	signal s_leds		: std_logic_vector(107 downto 0);
+
+	-- LINK SIGNALS --
+	
+	signal s_n_accept_button 	: std_logic;
+	signal s_n_cancel_button	: std_logic;
+	signal s_n_choice_buttons 	: std_logic_vector(4 downto 0);
+	
+	signal s_chosen_coin_type		: std_logic_vector(4 downto 0);
+	signal s_chosen_drink_type		: std_logic_vector(4 downto 0);
+
+	signal s_accept_button_o	: std_logic; 
+	signal s_cancel_button_o	: std_logic;
+	signal s_five_button_o 		: std_logic; 
+	signal s_two_button_o		: std_logic;
+	signal s_one_button_o		: std_logic; 
+	signal s_half_button_o		: std_logic; 
+	signal s_fifth_button_o		: std_logic;
+
+	signal s_clear_accept_button 	: std_logic;
+	signal s_clear_cancel_button	: std_logic;
+	signal s_clear_choice_buttons : std_logic_vector(4 downto 0);
+
+	signal s_drink_type		: std_logic_vector(4 downto 0);
+	signal s_coin_type		: std_logic_vector(4 downto 0);
+	signal s_final_price 		: std_logic_vector(15 downto 0);
+
+	signal s_money_cmd_complete 	: std_logic;	
+	signal s_money_cmd_served	: std_logic;
+	
+	signal s_available 		: std_logic;	
+	signal s_pour_cmd_complete 	: std_logic;	
+	signal s_pour_cmd_served 	: std_logic;
+	signal s_base_price 	: std_logic_vector(15 downto 0);		
+	
+	signal s_insert_coin 	: std_logic;
+	signal s_calc_change 	: std_logic; 
+	signal s_give_change 	: std_logic; 
+	signal s_release_coins 	: std_logic;
+	signal s_merge_coins 	: std_logic;
+	signal s_show_change 	: std_logic;
+
+	signal s_yes_clear 		: std_logic;
+	signal s_no_clear		: std_logic;
+	signal s_choices_clear		: std_logic;
+	
+	signal s_negative		: std_logic;	
+	signal s_zero			: std_logic;
+	signal s_disp_on		: std_logic;	
+	signal s_disp_sum		: std_logic_vector(15 downto 0);
+	signal s_change_count_2		: std_logic_vector(4 downto 0);
+	signal s_change_count_1		: std_logic_vector(4 downto 0);
+	signal s_change_count_05	: std_logic_vector(4 downto 0);
+	signal s_change_count_02	: std_logic_vector(4 downto 0);
+
+	signal s_msg 		: std_logic_vector(2 downto 0);
+	signal s_progress_led 	: std_logic;	
+
+begin
+	-- SIGNALS --
+
+	-- LOW ACTIVE --
+	s_n_accept_button <= not n_accept_button;
+	s_n_cancel_button <= not n_cancel_button;
+	s_n_choice_buttons <= not n_choice_buttons;
+	
+	-- CLEAR CHOICES --
+	s_clear_choice_buttons(4) <= '1' when s_yes_clear = '1' or s_choices_clear = '1' else '0';
+	s_clear_choice_buttons(3) <= '1' when s_choices_clear = '1' else '0';
+	s_clear_choice_buttons(2) <= '1' when s_choices_clear = '1' else '0';
+	s_clear_choice_buttons(1) <= '1' when s_choices_clear = '1' else '0';
+	s_clear_choice_buttons(0) <= '1' when s_no_clear = '1' or s_choices_clear = '1' else '0';
+
+	-- CHOICE --
+	s_chosen_coin_type <=	"10000" when n_choice_buttons(4) = '0' and s_insert_coin = '1' else 
+				"01000" when n_choice_buttons(3) = '0' and s_insert_coin = '1' else 
+				"00100" when n_choice_buttons(2) = '0' and s_insert_coin = '1' else 
+				"00010" when n_choice_buttons(1) = '0' and s_insert_coin = '1' else 
+				"00001" when n_choice_buttons(0) = '0' and s_insert_coin = '1' else 
+				"00000";
+
+	
+
+	-- COMPONENT INSTANCIATIONS --
+	my_main_fsm : main_fsm 
+	port map(
+		clk 		=> clk, 			--
+		reset 		=> reset, 			--
+		accept 		=> s_n_accept_button,		--
+		accept_clear 	=> s_clear_accept_button, 	--
+		cancel 		=> s_n_cancel_button,		--
+		cancel_clear 	=> s_clear_cancel_button, 	--
+		yes 		=> s_n_choice_buttons(4),	--
+		yes_clear	=> s_yes_clear, 		--
+		no 		=> s_n_choice_buttons(0),	--
+		no_clear	=> s_no_clear, 			--
+		clear_choices 	=> s_choices_clear, 		--
+		in_coin_type 	=> s_chosen_coin_type, 		--
+		drink_type 	=> s_chosen_drink_type,		--
+		available 	=> s_available, 		--
+		base_price 	=> s_base_price,		--
+		drink_type_o 	=> s_drink_type,		--
+		pour_cmd_served => s_pour_cmd_served,		--
+		pour_cmd_complete => s_pour_cmd_complete,	--
+		zero 		=> s_zero, 			--
+		negative 	=> s_negative, 			--
+		insert_coin	=> s_insert_coin, 		--
+		calc_change	=> s_calc_change,		--
+		give_change	=> s_give_change,		--
+		release_coins	=> s_release_coins,		--
+		merge_coins	=> s_merge_coins,		--
+		coin_type 	=> s_coin_type,			--
+		final_price	=> s_final_price,		--
+		show_change	=> s_show_change,		--
+		money_cmd_served => s_money_cmd_served,		--
+		money_cmd_complete => s_money_cmd_complete, 	--
+		msg		=> s_msg);			--
+
+	my_money_storage : money_storage 
+	port map(
+		clk 		=> clk,
+		reset 		=> reset, 
+		insert_coin 	=> s_insert_coin,	--	
+		calc_change 	=> s_calc_change, 	--
+		give_change 	=> s_give_change, 	-- 
+                release_coins 	=> s_release_coins,	-- 
+		merge_coins 	=> s_merge_coins,	--
+		in_coin_type 	=> s_coin_type,		--
+		price 		=> s_final_price,	-- 
+		show_change 	=> s_show_change,	--
+		zero 		=> s_zero, 		--
+		negative 	=> s_negative,  	--
+		cmd_served 	=> s_money_cmd_served,  --
+		cmd_complete 	=> s_money_cmd_complete,-- 
+		disp_on 	=> s_disp_on, 		--
+		disp_sum 	=> s_disp_sum, 		--
+		change_count_2 	=> s_change_count_2, 	--
+		change_count_1 	=> s_change_count_1, 	--
+		change_count_05 => s_change_count_05,	-- 
+		change_count_02 => s_change_count_02);	--
+
+	my_drink_preparation : drink_preparation 
+	port map(
+		clk 		=> clk, 		--
+		reset 		=> reset, 		--
+		drink_type 	=> s_drink_type, 	--
+		available 	=> s_available,		--
+		price 		=> s_base_price, 	--
+		cmd_served 	=> s_pour_cmd_served, 	--
+		cmd_complete 	=> s_pour_cmd_complete, --
+		led_out 	=> s_progress_led);	--
+
+	-- BUTTON COMPONENTS --
+	accept_butt : timed_button 
+	port map(
+		clk 		=> clk,				--
+		button 		=> s_n_accept_button,		--
+		clear		=> s_clear_accept_button,	--
+		button_o 	=> s_accept_button_o);		--
+
+	cancel_butt : timed_button 
+	port map(
+		clk 		=> clk, 			--
+		button 		=> s_n_cancel_button, 		--
+		clear 		=> s_clear_cancel_button, 	--
+		button_o 	=> s_cancel_button_o);		--
+
+	five_butt : timed_button 
+	port map(
+		clk 		=> clk, 			--
+		button 		=> s_n_choice_buttons(4), 	--
+		clear 		=> s_clear_choice_buttons(4), 	--
+		button_o 	=> s_five_button_o);		--
+
+	two_butt : timed_button 
+	port map(
+		clk 		=> clk, 			--
+		button 		=> s_n_choice_buttons(3), 	--
+		clear 		=> s_clear_choice_buttons(3), 	--
+		button_o 	=> s_two_button_o);		--
+
+	one_butt : timed_button 
+	port map(
+		clk 		=> clk, 			--
+		button 		=> s_n_choice_buttons(2), 	--
+		clear 		=> s_clear_choice_buttons(2), 	--
+		button_o 	=> s_one_button_o);		--
+
+	half_butt : timed_button 
+	port map(
+		clk 		=> clk, 			--
+		button 		=> s_n_choice_buttons(1), 	--
+		clear 		=> s_clear_choice_buttons(1), 	--
+		button_o 	=> s_half_button_o);		--
+	
+	fifth_butt : timed_button 
+	port map(
+		clk 		=> clk, 			--
+		button 		=> s_n_choice_buttons(0), 	--
+		clear 		=> s_clear_choice_buttons(0), 	--
+		button_o 	=> s_fifth_button_o);		--
+	
+	-- DISPLAY COMPONENTS --
+
+	my_led_driver : led_driver 
+	port map(
+		msg 		=> s_msg, 			--
+		change_count_2 	=> s_change_count_2, 		--
+		change_count_1 	=> s_change_count_1, 		--
+		change_count_05 => s_change_count_05,		-- 
+		change_count_02 => s_change_count_02,		-- 
+		progress_led 	=> s_progress_led, 		--
+		leds 		=> s_leds);			--
+
+	my_disp_driver : disp_driver 
+	port map(
+		en		=> s_disp_on,	-- 
+		num 		=> s_disp_sum,	-- 
+		whole_disp 	=> s_disp_2, 	--
+		frac_disp_u 	=> s_disp_1, 	--
+		frac_disp_l 	=> s_disp_0);	--
+	
+
+	-- DISPLAY AND LEDS --
+
+	leds 	<= s_leds;	--
+	disp_2 	<= s_disp_2;	--
+	disp_1 	<= s_disp_1;	--
+	disp_0 	<= s_disp_0;	--
+	
+end architecture rtl;

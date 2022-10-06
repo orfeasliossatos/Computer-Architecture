@@ -1,0 +1,953 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/oilio/Downloads/modelsim
+Eadd_sub_unit
+Z0 w1589914150
+Z1 DPx4 ieee 9 math_real 0 22 Sk6CSihbPL<f[^Shm]=KX0
+Z2 DPx4 work 15 fixed_point_pkg 0 22 ORhM90;QO^BY=J[oXKi3=1
+Z3 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z4 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z5 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z6 dC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates
+Z7 8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/single_coin_type_storage-rtl.vhd
+Z8 FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/single_coin_type_storage-rtl.vhd
+l0
+L55
+VPGc@MIUGOl5;P[VP[WP;M1
+!s100 `73gJBj?4c]PiVWaI;c`m3
+Z9 OV;C;10.5b;63
+32
+Z10 !s110 1589914159
+!i10b 1
+Z11 !s108 1589914159.000000
+Z12 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/single_coin_type_storage-rtl.vhd|
+Z13 !s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/single_coin_type_storage-rtl.vhd|
+!i113 1
+Z14 o-work work -2002 -explicit
+Z15 tExplicit 1 CvgOpt 0
+Aadd_sub_unit_behavior
+R1
+R2
+R3
+R4
+R5
+DEx4 work 12 add_sub_unit 0 22 PGc@MIUGOl5;P[VP[WP;M1
+l62
+L61
+V<cI>a5zCIFWnIW:LLI<[D0
+!s100 67PZN8IjUm@8UL::8ETC>0
+R9
+32
+R10
+!i10b 1
+R11
+R12
+R13
+!i113 1
+R14
+R15
+Ebcd_to_7seg
+w1590084711
+R1
+R2
+R3
+R4
+R5
+R6
+8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/bcd_to_7seg-entity.vhd
+FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/bcd_to_7seg-entity.vhd
+l0
+L7
+Vb2;=e=o3@U5RBneF?:@h=3
+!s100 _XHI=K:ihVcL^Lc5:ch8P1
+R9
+32
+Z16 !s110 1590674023
+!i10b 1
+Z17 !s108 1590674023.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/bcd_to_7seg-entity.vhd|
+!s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/bcd_to_7seg-entity.vhd|
+!i113 1
+R14
+R15
+Artl
+w1590088376
+R1
+R2
+R3
+R4
+R5
+DEx4 work 11 bcd_to_7seg 0 22 b2;=e=o3@U5RBneF?:@h=3
+8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/bcd_to_7seg-rtl.vhd
+FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/bcd_to_7seg-rtl.vhd
+l5
+L1
+V8eOfzoIjjX5BH@5>=EkLL0
+!s100 TB_KUZjGJj5`ReXSDkf3<1
+R9
+32
+Z18 !s110 1590674029
+!i10b 1
+Z19 !s108 1590674029.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/bcd_to_7seg-rtl.vhd|
+!s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/bcd_to_7seg-rtl.vhd|
+!i113 1
+R14
+R15
+Ebin_to_bcd
+w1588004346
+R1
+R2
+R3
+R4
+R5
+R6
+8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/bin_to_bcd-entity.vhd
+FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/bin_to_bcd-entity.vhd
+l0
+L7
+VTE[[eY^M3MB@BMQLo>o0z0
+!s100 =0;KKP5iC3A?dHZ4bC:543
+R9
+32
+R16
+!i10b 1
+R17
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/bin_to_bcd-entity.vhd|
+!s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/bin_to_bcd-entity.vhd|
+!i113 1
+R14
+R15
+Artl
+w1589983554
+R1
+R2
+R3
+R4
+R5
+DEx4 work 10 bin_to_bcd 0 22 TE[[eY^M3MB@BMQLo>o0z0
+8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/bin_to_bcd-rtl.vhd
+FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/bin_to_bcd-rtl.vhd
+l9
+L1
+V:fbGNAYfJn>BJbmBRcF4R3
+!s100 7YahmAho^j5Fc^l@okmKe3
+R9
+32
+Z20 !s110 1590674030
+!i10b 1
+R19
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/bin_to_bcd-rtl.vhd|
+!s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/bin_to_bcd-rtl.vhd|
+!i113 1
+R14
+R15
+Ecoin_storage
+Z21 w1589976019
+R1
+R2
+R3
+R4
+R5
+R6
+8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/coin_storage-entity.vhd
+FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/coin_storage-entity.vhd
+l0
+L7
+VRQBJD:lLY:b6ZcIEGgTG<3
+!s100 <]4>?A:0Z;bXQnoPSFgcc1
+R9
+32
+R16
+!i10b 1
+R17
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/coin_storage-entity.vhd|
+!s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/coin_storage-entity.vhd|
+!i113 1
+R14
+R15
+Artl
+R1
+R2
+R3
+R4
+R5
+DEx4 work 12 coin_storage 0 22 RQBJD:lLY:b6ZcIEGgTG<3
+8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/coin_storage-rtl.vhd
+FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/coin_storage-rtl.vhd
+l39
+L1
+VS<L8jXS;c3Eni^Go06cHe3
+!s100 JbE2dLzj:g5ZUcib=8C7P0
+R9
+32
+R20
+!i10b 1
+Z22 !s108 1590674030.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/coin_storage-rtl.vhd|
+!s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/coin_storage-rtl.vhd|
+!i113 1
+R14
+R15
+Ecounter_reg
+R0
+R1
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+l0
+L23
+V9[c_ULHbL[nh`<i<lSC`l2
+!s100 <0Ja77J0A@N6IEWQSl3bP1
+R9
+32
+R10
+!i10b 1
+R11
+R12
+R13
+!i113 1
+R14
+R15
+Acounter_reg_behavior
+R1
+R2
+R3
+R4
+R5
+DEx4 work 11 counter_reg 0 22 9[c_ULHbL[nh`<i<lSC`l2
+l31
+L30
+V>_TF`PB?Zh8kJ0dK:PoHo1
+!s100 G5XDhKlS;?L32;BF9o3j^2
+R9
+32
+R10
+!i10b 1
+R11
+R12
+R13
+!i113 1
+R14
+R15
+Edebouncer
+Z23 w1588004311
+R1
+R2
+R3
+R4
+R5
+R6
+8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/debouncer-entity.vhd
+FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/debouncer-entity.vhd
+l0
+L7
+VRNgjcWFg`6oai[2b>ZNPY1
+!s100 2^6hGc4nM9AdF:igI]F2@1
+R9
+32
+Z24 !s110 1590674024
+!i10b 1
+Z25 !s108 1590674024.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/debouncer-entity.vhd|
+!s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/debouncer-entity.vhd|
+!i113 1
+R14
+R15
+Artl
+w1590371012
+R1
+R2
+R3
+R4
+R5
+DEx4 work 9 debouncer 0 22 RNgjcWFg`6oai[2b>ZNPY1
+8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/debouncer-rtl.vhd
+FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/debouncer-rtl.vhd
+l12
+L1
+VGMNC>Y38UX`Zamh4OzMT33
+!s100 [zU_@W@g_?f?YSXa<A0^b1
+R9
+32
+R20
+!i10b 1
+R22
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/debouncer-rtl.vhd|
+!s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/debouncer-rtl.vhd|
+!i113 1
+R14
+R15
+Edisp_driver
+w1588585838
+R1
+R2
+R3
+R4
+R5
+R6
+8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/disp_driver-entity.vhd
+FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/disp_driver-entity.vhd
+l0
+L7
+VUa[A_Y;2H:JS<2ojfjBeE2
+!s100 >PRm9Pi2niAKkz6Q4L=;>3
+R9
+32
+R24
+!i10b 1
+R25
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/disp_driver-entity.vhd|
+!s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/disp_driver-entity.vhd|
+!i113 1
+R14
+R15
+Artl
+w1590087193
+R1
+R2
+R3
+R4
+R5
+DEx4 work 11 disp_driver 0 22 Ua[A_Y;2H:JS<2ojfjBeE2
+8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/disp_driver-rtl.vhd
+FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/disp_driver-rtl.vhd
+l37
+L1
+VKjNXAo@710U`VnlGe=5kS3
+!s100 1PO5HeG@KJ;IhX[YNKFKB0
+R9
+32
+Z26 !s110 1590674031
+!i10b 1
+Z27 !s108 1590674031.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/disp_driver-rtl.vhd|
+!s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/disp_driver-rtl.vhd|
+!i113 1
+R14
+R15
+Edrink_preparation
+R23
+R1
+R2
+R3
+R4
+R5
+R6
+8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/drink_preparation-entity.vhd
+FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/drink_preparation-entity.vhd
+l0
+L7
+VUiQ7Q@M2UoKOeAnfB[m4@0
+!s100 Ozc9l2_4L:Mf15i==NoRf0
+R9
+32
+R24
+!i10b 1
+R25
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/drink_preparation-entity.vhd|
+!s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/drink_preparation-entity.vhd|
+!i113 1
+R14
+R15
+Artl
+w1590414372
+R1
+R2
+R3
+R4
+R5
+DEx4 work 17 drink_preparation 0 22 UiQ7Q@M2UoKOeAnfB[m4@0
+8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/drink_preparation-rtl.vhd
+FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/drink_preparation-rtl.vhd
+l29
+L1
+V?F1^04[KN3EUZg<oK8o7n0
+!s100 g2IzmTX2i?Kf?@aAb9KFC1
+R9
+32
+R26
+!i10b 1
+R27
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/drink_preparation-rtl.vhd|
+!s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/drink_preparation-rtl.vhd|
+!i113 1
+R14
+R15
+Pfixed_point_pkg
+R1
+R3
+R4
+R5
+Z28 w1588004382
+R6
+Z29 8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/packages/fixed_point_pkg.vhd
+Z30 FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/packages/fixed_point_pkg.vhd
+l0
+L6
+VORhM90;QO^BY=J[oXKi3=1
+!s100 WgIOF>lj@A[Pdm<mYVW5b1
+R9
+32
+b1
+Z31 !s110 1590580965
+!i10b 1
+Z32 !s108 1590580965.000000
+Z33 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/packages/fixed_point_pkg.vhd|
+Z34 !s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/packages/fixed_point_pkg.vhd|
+!i113 1
+R14
+R15
+Bbody
+R2
+R1
+R3
+R4
+R5
+l0
+L40
+V@Q<[i^YaP>COAH<R;1cjV1
+!s100 2EfOSKOm^6Dm=8Z[d9>YA0
+R9
+32
+R31
+!i10b 1
+R32
+R33
+R34
+!i113 1
+R14
+R15
+Einc_dec_unit
+R0
+R1
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+l0
+L6
+V3TMK3@oiPR0AeD0kOGGQ60
+!s100 9EV`H6F3zN_E1E23zKITC3
+R9
+32
+R10
+!i10b 1
+R11
+R12
+R13
+!i113 1
+R14
+R15
+Ainc_dec_unit_behavior
+R1
+R2
+R3
+R4
+R5
+DEx4 work 12 inc_dec_unit 0 22 3TMK3@oiPR0AeD0kOGGQ60
+l14
+L13
+VQ;Ym3WaQT2HDL=J9;`z3>1
+!s100 EA827;YA12^z^?3eeF;hl1
+R9
+32
+R10
+!i10b 1
+R11
+R12
+R13
+!i113 1
+R14
+R15
+Eled_driver
+R23
+R1
+R2
+R3
+R4
+R5
+R6
+8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/led_driver-entity.vhd
+FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/led_driver-entity.vhd
+l0
+L7
+V4>]A:h2NzTIPRAWgOUFJE3
+!s100 =QS]IgdROLPBj^M98RCRV3
+R9
+32
+!s110 1590674025
+!i10b 1
+!s108 1590674025.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/led_driver-entity.vhd|
+!s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/led_driver-entity.vhd|
+!i113 1
+R14
+R15
+Artl
+w1590361385
+R1
+R2
+R3
+R4
+R5
+DEx4 work 10 led_driver 0 22 4>]A:h2NzTIPRAWgOUFJE3
+8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/led_driver-rtl.vhd
+FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/led_driver-rtl.vhd
+l90
+L1
+V7JR;7U11ch`AbW0CVXkRk3
+!s100 7L910fUm=D6glmY[<bH>I2
+R9
+32
+Z35 !s110 1590674032
+!i10b 1
+Z36 !s108 1590674032.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/led_driver-rtl.vhd|
+!s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/led_driver-rtl.vhd|
+!i113 1
+R14
+R15
+Emachine
+R23
+R1
+R2
+R3
+R4
+R5
+R6
+8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/machine-entity.vhd
+FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/machine-entity.vhd
+l0
+L7
+V13=MPhP[_QKcYmHPTiAcX0
+!s100 k9Qe]:>4WXGQ1S?`;bjWk1
+R9
+32
+!s110 1590674026
+!i10b 1
+!s108 1590674026.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/machine-entity.vhd|
+!s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/machine-entity.vhd|
+!i113 1
+R14
+R15
+Artl
+Z37 w1590664090
+R1
+R2
+R3
+R4
+R5
+Z38 DEx4 work 7 machine 0 22 13=MPhP[_QKcYmHPTiAcX0
+Z39 8C:\Users\oilio\OneDrive\Documents\DSD\TP78\templates\architectures\machine-rtl.vhd
+Z40 FC:\Users\oilio\OneDrive\Documents\DSD\TP78\templates\architectures\machine-rtl.vhd
+l167
+L1
+Z41 VHd43C0e@SDX3HVcAK24fI3
+Z42 !s100 `JE^;zzK97nlF9kl<]TM^1
+R9
+32
+!s110 1590674035
+!i10b 1
+!s108 1590674035.000000
+Z43 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\Users\oilio\OneDrive\Documents\DSD\TP78\templates\architectures\machine-rtl.vhd|
+!s107 C:\Users\oilio\OneDrive\Documents\DSD\TP78\templates\architectures\machine-rtl.vhd|
+!i113 1
+R14
+R15
+Emain_fsm
+w1589904190
+R1
+R2
+R3
+R4
+R5
+R6
+8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/main_fsm-entity.vhd
+FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/main_fsm-entity.vhd
+l0
+L6
+V^NDQEOS`N^?[[9ZeV=TeI2
+!s100 W7HBXVF3zM68c]:;C@LBN0
+R9
+32
+Z44 !s110 1590674027
+!i10b 1
+Z45 !s108 1590674027.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/main_fsm-entity.vhd|
+!s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/main_fsm-entity.vhd|
+!i113 1
+R14
+R15
+Artl
+w1590673953
+R1
+R2
+R3
+R4
+R5
+DEx4 work 8 main_fsm 0 22 ^NDQEOS`N^?[[9ZeV=TeI2
+8C:\Users\oilio\OneDrive\Documents\DSD\TP78\templates\architectures\main_fsm-rtl.vhd
+FC:\Users\oilio\OneDrive\Documents\DSD\TP78\templates\architectures\main_fsm-rtl.vhd
+l24
+L1
+VHgZkX_HUEGaRVMYdLf6Xi1
+!s100 _Zg><hngH7RzhAlRT3dLJ0
+R9
+32
+R35
+!i10b 1
+R36
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\Users\oilio\OneDrive\Documents\DSD\TP78\templates\architectures\main_fsm-rtl.vhd|
+!s107 C:\Users\oilio\OneDrive\Documents\DSD\TP78\templates\architectures\main_fsm-rtl.vhd|
+!i113 1
+R14
+R15
+Emoney_storage
+R23
+R1
+R2
+R3
+R4
+R5
+R6
+8C:\Users\oilio\OneDrive\Documents\DSD\TP78\templates\entities\money_storage-entity.vhd
+FC:\Users\oilio\OneDrive\Documents\DSD\TP78\templates\entities\money_storage-entity.vhd
+l0
+L7
+VQ[R0nz?X;H1e?lKY7?=F13
+!s100 P;Q=mRRc1c4VN;bVGeJGE1
+R9
+32
+R44
+!i10b 1
+R45
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\Users\oilio\OneDrive\Documents\DSD\TP78\templates\entities\money_storage-entity.vhd|
+!s107 C:\Users\oilio\OneDrive\Documents\DSD\TP78\templates\entities\money_storage-entity.vhd|
+!i113 1
+R14
+R15
+Artl
+w1590500745
+R1
+R2
+R3
+R4
+R5
+DEx4 work 13 money_storage 0 22 Q[R0nz?X;H1e?lKY7?=F13
+8C:\Users\oilio\OneDrive\Documents\DSD\TP78\templates\architectures\money_storage-rtl.vhd
+FC:\Users\oilio\OneDrive\Documents\DSD\TP78\templates\architectures\money_storage-rtl.vhd
+l70
+L1
+V[T:^9h7bjSeacWTXYH9bA3
+!s100 iDX[i1]nKg`UbC4UWa5dc2
+R9
+32
+Z46 !s110 1590674033
+!i10b 1
+R36
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\Users\oilio\OneDrive\Documents\DSD\TP78\templates\architectures\money_storage-rtl.vhd|
+!s107 C:\Users\oilio\OneDrive\Documents\DSD\TP78\templates\architectures\money_storage-rtl.vhd|
+!i113 1
+R14
+R15
+Esingle_coin_type_storage
+w1589928968
+R1
+R2
+R3
+R4
+R5
+R6
+8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/single_coin_type_storage-entity.vhd
+FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/single_coin_type_storage-entity.vhd
+l0
+L7
+VjR@W6RV4A^gXXZW]WElD?3
+!s100 @<`^?bZUBLLT0g`=3TTbh0
+R9
+32
+Z47 !s110 1590674028
+!i10b 1
+R45
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/single_coin_type_storage-entity.vhd|
+!s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/single_coin_type_storage-entity.vhd|
+!i113 1
+R14
+R15
+Artl
+w1589930951
+R1
+R2
+R3
+R4
+R5
+DEx4 work 24 single_coin_type_storage 0 22 jR@W6RV4A^gXXZW]WElD?3
+R7
+R8
+l11
+L1
+V46:<A1dYOWi:K9f=8IFzN0
+!s100 ^WJo><0a3jhWChA4<Edgo1
+R9
+32
+R46
+!i10b 1
+Z48 !s108 1590674033.000000
+R12
+R13
+!i113 1
+R14
+R15
+Estorage_ctl
+R23
+R1
+R2
+R3
+R4
+R5
+R6
+8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/storage_ctl-entity.vhd
+FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/storage_ctl-entity.vhd
+l0
+L7
+V8>7e=P>S4GokcJHC]52dK3
+!s100 15iiLL1@nCf:gXb9NdSEf0
+R9
+32
+R47
+!i10b 1
+Z49 !s108 1590674028.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/storage_ctl-entity.vhd|
+!s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/storage_ctl-entity.vhd|
+!i113 1
+R14
+R15
+Artl
+w1590669426
+R1
+R2
+R3
+R4
+R5
+DEx4 work 11 storage_ctl 0 22 8>7e=P>S4GokcJHC]52dK3
+8C:\Users\oilio\OneDrive\Documents\DSD\TP78\templates\architectures\storage_ctl-rtl.vhd
+FC:\Users\oilio\OneDrive\Documents\DSD\TP78\templates\architectures\storage_ctl-rtl.vhd
+l17
+L1
+VJPH26zV[D>mBCUR;ldIOD2
+!s100 zA<YEU_A`0R]Y_25z_BWg2
+R9
+32
+R46
+!i10b 1
+R48
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\Users\oilio\OneDrive\Documents\DSD\TP78\templates\architectures\storage_ctl-rtl.vhd|
+!s107 C:\Users\oilio\OneDrive\Documents\DSD\TP78\templates\architectures\storage_ctl-rtl.vhd|
+!i113 1
+R14
+R15
+Esum_reg
+R0
+R1
+R2
+R3
+R4
+R5
+R6
+R7
+R8
+l0
+L39
+V_Lilk;WeZc0dYhhzmbEMV3
+!s100 2RmKIm3?^CU;B>FGj=A`k3
+R9
+32
+R10
+!i10b 1
+R11
+R12
+R13
+!i113 1
+R14
+R15
+Asum_reg_behavior
+R1
+R2
+R3
+R4
+R5
+DEx4 work 7 sum_reg 0 22 _Lilk;WeZc0dYhhzmbEMV3
+l47
+L46
+VTW]1A3Ve8]:8]7B1?Z^5D2
+!s100 HkPk:f;ak=B?NLn^IgYeZ1
+R9
+32
+R10
+!i10b 1
+R11
+R12
+R13
+!i113 1
+R14
+R15
+Esum_splitter
+R23
+R1
+R2
+R3
+R4
+R5
+R6
+8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/sum_splitter-entity.vhd
+FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/sum_splitter-entity.vhd
+l0
+L9
+VPdEFB@=bjgC9HVQD5chiE2
+!s100 =eEASSOYHF0mn>^OWi1G30
+R9
+32
+R47
+!i10b 1
+R49
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/sum_splitter-entity.vhd|
+!s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/sum_splitter-entity.vhd|
+!i113 1
+R14
+R15
+Artl
+w1589979317
+R1
+R2
+R3
+R4
+R5
+DEx4 work 12 sum_splitter 0 22 PdEFB@=bjgC9HVQD5chiE2
+8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/sum_splitter-rtl.vhd
+FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/sum_splitter-rtl.vhd
+l9
+L1
+VLjO9aFj900SFGRj7fmm^50
+!s100 WZXUmf_EZNW>EgA>fLZ=H2
+R9
+32
+Z50 !s110 1590674034
+!i10b 1
+Z51 !s108 1590674034.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/sum_splitter-rtl.vhd|
+!s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/sum_splitter-rtl.vhd|
+!i113 1
+R14
+R15
+Etimed_button
+R23
+R1
+R2
+R3
+R4
+R5
+R6
+8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/timed_button-entity.vhd
+FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/timed_button-entity.vhd
+l0
+L7
+VIm84ZR>jlfM4dE0?f>2C?3
+!s100 F950CfGB@agLjTl6EodDd3
+R9
+32
+R18
+!i10b 1
+R19
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/timed_button-entity.vhd|
+!s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/timed_button-entity.vhd|
+!i113 1
+R14
+R15
+Artl
+w1590659587
+R1
+R2
+R3
+R4
+R5
+DEx4 work 12 timed_button 0 22 Im84ZR>jlfM4dE0?f>2C?3
+8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/timed_button-rtl.vhd
+FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/timed_button-rtl.vhd
+l30
+L1
+VB8K6=_g[FLB2c;gBITHme0
+!s100 6j:S[Qoge?cJfY]739e3e2
+R9
+32
+R50
+!i10b 1
+R51
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/timed_button-rtl.vhd|
+!s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/timed_button-rtl.vhd|
+!i113 1
+R14
+R15
+Etimer
+R23
+R1
+R2
+R3
+R4
+R5
+R6
+8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/timer-entity.vhd
+FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/timer-entity.vhd
+l0
+L7
+Ven7H:YEgI^JHf9VZ6ieoc1
+!s100 fcJ`:jZdJO1?5Pg5e_[[I1
+R9
+32
+!s110 1590674022
+!i10b 1
+!s108 1590674022.000000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/timer-entity.vhd|
+!s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/timer-entity.vhd|
+!i113 1
+R14
+R15
+Artl
+w1590414515
+R1
+R2
+R3
+R4
+R5
+DEx4 work 5 timer 0 22 en7H:YEgI^JHf9VZ6ieoc1
+8C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/timer-rtl.vhd
+FC:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/timer-rtl.vhd
+l7
+L1
+Vc3AF1baJi8ncj^23H_mf_1
+!s100 bjLKZN1O]KSC<4R0`8W_G0
+R9
+32
+R18
+!i10b 1
+R19
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/timer-rtl.vhd|
+!s107 C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/timer-rtl.vhd|
+!i113 1
+R14
+R15

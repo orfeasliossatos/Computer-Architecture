@@ -1,0 +1,130 @@
+architecture rtl of drink_preparation is
+--Preparation times are as follows (ordered from MSB to LSB):
+--5, 7, 7, 9, 13
+--Prices are as follows (ordered from MSB to LSB):
+--1.2, 1.4, 1.4, 1.8, 2.5
+--You may use the >>float_to_fixed<< routine to convert to unsigned.
+--Numbers of ingredients packages are as follows (ordered from MSB to LSB):
+--2, 2, 2, 2, 1
+
+	component timer is 
+	generic(FCLK : natural);
+	port(	clk     : in std_logic;
+		clear   : in std_logic;
+		en      : in std_logic;
+		timeout : in std_logic_vector(4 downto 0);
+		pulse   : out std_logic;
+		done    : out std_logic);
+	end component timer;
+	
+	signal s_curr_ingr_4, s_curr_ingr_3, s_curr_ingr_2, s_curr_ingr_1, s_curr_ingr_0 : natural;
+	signal s_next_ingr_4, s_next_ingr_3, s_next_ingr_2, s_next_ingr_1, s_next_ingr_0 : natural;
+	signal s_did_transition_bank : std_logic := '0';
+
+	signal s_en_timer	: std_logic;
+	signal s_clear_timer	: std_logic;
+	signal s_prep_time 	: std_logic_vector(4 downto 0);
+	signal s_done 		: std_logic;
+	signal s_cmd_complete 	: std_logic;
+begin
+
+	-- PREP TIME ROM --
+	s_prep_time <= 	std_logic_vector(to_unsigned(5, 5)) when drink_type = "10000" else
+			std_logic_vector(to_unsigned(7, 5)) when drink_type = "01000" else
+			std_logic_vector(to_unsigned(7, 5)) when drink_type = "00100" else
+			std_logic_vector(to_unsigned(9, 5)) when drink_type = "00010" else
+			std_logic_vector(to_unsigned(13, 5)) when drink_type = "00001" else
+			"00000";
+
+	-- TIMER --
+	prep_timer : timer
+	generic	map(	FCLK 	=> 10)
+	port map(	clk	=> clk,
+			clear	=> s_clear_timer,
+			en	=> s_en_timer,
+			timeout => s_prep_time,
+			pulse	=> led_out,
+			done	=> s_done);
+
+	s_clear_timer <= '1' when s_en_timer = '0' else '0';
+
+	-- DRINK PRICE ROM --
+	price <= 	std_logic_vector(float_to_fixed(1.2)) when drink_type = "10000" else
+			std_logic_vector(float_to_fixed(1.4)) when drink_type = "01000" else
+			std_logic_vector(float_to_fixed(1.4)) when drink_type = "00100" else
+			std_logic_vector(float_to_fixed(1.8)) when drink_type = "00010" else
+			std_logic_vector(float_to_fixed(2.5)) when drink_type = "00001" else
+			"0000000000000000";
+
+	available <= 	'1' when (s_curr_ingr_4 > 0) and drink_type = "10000" else
+			'1' when (s_curr_ingr_3 > 0) and drink_type = "01000" else
+			'1' when (s_curr_ingr_2 > 0) and drink_type = "00100" else
+			'1' when (s_curr_ingr_1 > 0) and drink_type = "00010" else
+			'1' when (s_curr_ingr_0 > 0) and drink_type = "00001" else
+			'0';
+
+	-- Handshake Protocol --
+	handshake : process(clk)
+	begin
+		if(rising_edge(clk)) then	
+			if (s_done = '1') then			
+				s_en_timer <= '0';	
+			end if;
+
+			if (reset = '1') then
+
+				-- INGREDIENTS REGISTER RESET --
+				s_curr_ingr_4 <= 2;
+				s_curr_ingr_3 <= 2;
+				s_curr_ingr_2 <= 2;
+				s_curr_ingr_1 <= 2;
+				s_curr_ingr_0 <= 1;
+
+				s_next_ingr_4 <= 2;
+				s_next_ingr_3 <= 2;
+				s_next_ingr_2 <= 2;
+				s_next_ingr_1 <= 2;
+				s_next_ingr_0 <= 1;
+
+				s_cmd_complete <= '0';
+				cmd_complete <= '0';
+				
+				s_en_timer <= '0';
+			elsif(cmd_served = '1') then						
+				if (s_done = '0' and s_cmd_complete = '0') then
+					s_en_timer <= '1';
+				end if;		
+
+				if (s_done = '1') then
+					s_cmd_complete <= '1';
+					cmd_complete <= '1';
+				end if;
+				-- INGREDIENTS REGISTER TRANSITION --
+				if(s_did_transition_bank = '0') then
+					case(drink_type) is
+						when "10000" => s_next_ingr_4 <= s_curr_ingr_4 - 1; s_did_transition_bank <= '1'; 
+						when "01000" => s_next_ingr_3 <= s_curr_ingr_3 - 1; s_did_transition_bank <= '1';
+						when "00100" => s_next_ingr_2 <= s_curr_ingr_2 - 1; s_did_transition_bank <= '1';
+						when "00010" => s_next_ingr_1 <= s_curr_ingr_1 - 1; s_did_transition_bank <= '1';
+						when "00001" => s_next_ingr_0 <= s_curr_ingr_1 - 1; s_did_transition_bank <= '1';
+						when others => 
+					end case;
+				end if;
+				
+				-- UPDATE REGISTERS --
+				s_curr_ingr_4 <= s_next_ingr_4;
+				s_curr_ingr_3 <= s_next_ingr_3;
+				s_curr_ingr_2 <= s_next_ingr_2;				s_curr_ingr_1 <= s_next_ingr_1;
+				s_curr_ingr_0 <= s_next_ingr_0;
+
+				
+			else
+				s_did_transition_bank <= '0';
+				s_cmd_complete <= '0'
+				cmd_complete <= '0';
+			end if;
+		end if;
+	end process handshake;
+
+
+end architecture rtl;

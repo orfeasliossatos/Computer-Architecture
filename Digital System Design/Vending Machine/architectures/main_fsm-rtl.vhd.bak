@@ -1,0 +1,182 @@
+architecture rtl of main_fsm is
+
+	-- STATES --
+	type state_type is (
+		INSERT, 
+		RELEASE, 
+		CHOOSE_DRINK, 
+		REPEAT_CHOICE, 
+		REUSE_CUP, 
+		CALC, 
+		OK, 
+		DONATE, 
+		GIVE, 
+		POUR, 
+		MERGE); 
+	signal s_curr_state : state_type;
+
+	signal s_drink_type 	: std_logic_vector(4 downto 0);
+	signal s_price_register : std_logic_vector(15 downto 0);
+	signal s_final_price 	: std_logic_vector(15 downto 0);
+
+	signal s_did_reset : std_logic;
+
+begin
+
+	-- CLEARING --
+	accept_clear 	<= '1' when accept = '1' else '0';
+	cancel_clear 	<= '1' when cancel = '1' else '0';
+	yes_clear	<= '1' when yes = '1' else '0';
+	no_clear	<= '1' when no = '1' else '0';
+
+	-- OUTPUT LOGIC --
+	msg <= 	"001" when s_curr_state = INSERT else
+		"010" when s_curr_state = CHOOSE_DRINK else
+		"011" when s_curr_state = REPEAT_CHOICE else
+		"100" when s_curr_state = REUSE_CUP else
+		"101" when s_curr_state = DONATE else
+		"110" when s_curr_state = OK else
+		"111" when s_curr_state = POUR else "000";
+	
+	-- MONEY STORAGE OUTPUT --
+	insert_coin	<= '1' when s_curr_state = INSERT else '0';
+	calc_change	<= '1' when s_curr_state = CALC and money_cmd_complete = '0' else '0';
+	give_change	<= '1' when s_curr_state = GIVE and money_cmd_complete = '0' else '0';
+	release_coins	<= '1' when s_curr_state = RELEASE and money_cmd_complete = '0' else '0';
+	merge_coins	<= '1' when s_curr_state = MERGE and money_cmd_complete = '0' else '0';
+
+
+	coin_type	<= in_coin_type when s_curr_state = INSERT else "00000";
+	show_change	<= '1' when s_curr_state = OK else '0';
+	s_final_price	<= std_logic_vector(unsigned(s_price_register) - fifth) when s_curr_state = REUSE_CUP and yes = '1' else s_price_register;
+	final_price	<= s_final_price;
+
+	-- DRINK OUTPUT --
+	drink_type_o	<= drink_type;
+
+	-- SERVED
+	money_cmd_served <= '1' when money_cmd_complete = '0' and (s_curr_state = RELEASE or s_curr_state = CALC or s_curr_state = GIVE or s_curr_state = MERGE) else '0';
+	pour_cmd_served <= '1' when pour_cmd_complete = '0' and (s_curr_state = POUR) else '0';
+
+	-- THE PROCESS --
+	synch : process(clk) is
+	begin
+		if(rising_edge(clk)) then
+			if(s_curr_state = CHOOSE_DRINK and available = '1') then
+				s_price_register <= base_price;
+			else	
+				s_price_register <= s_final_price;
+			end if;
+
+			if(reset = '1') then
+				s_did_reset <= '1';
+				s_curr_state <= INSERT;
+				s_drink_type <= "00000";
+			
+				clear_choices <= '1';
+
+			elsif (s_curr_state = INSERT) then
+
+				if(cancel = '1') then
+					s_curr_state <= RELEASE;
+					clear_choices <= '1';
+				elsif(accept = '1') then
+					s_curr_state <= CHOOSE_DRINK;
+					clear_choices <= '1';
+				end if;
+	
+			elsif(s_curr_state = RELEASE) then
+				clear_choices <= '0';
+					
+				if (money_cmd_complete = '1') then
+					s_curr_state <= INSERT;
+				end if;
+	
+			elsif(s_curr_state = CHOOSE_DRINK) then
+					
+				if(cancel = '1') then
+					s_curr_state <= RELEASE;
+				else 
+					if(drink_type = "10000" or drink_type = "01000" or drink_type = "00100" or drink_type = "00010" or drink_type = "00001") then
+						if(available = '1') then
+							s_curr_state <= REUSE_CUP;
+							clear_choices <= '1';
+						else
+							s_curr_state <= REPEAT_CHOICE;
+							clear_choices <= '1';
+						end if;
+					end if;
+				end if;									
+	
+			elsif(s_curr_state = REPEAT_CHOICE) then
+				clear_choices <= '0';
+	
+				if(no = '1' or cancel = '1') then
+					s_curr_state <= RELEASE;
+				elsif(yes = '1') then
+					s_curr_state <= CHOOSE_DRINK;
+				end if;			
+	
+			elsif (s_curr_state = REUSE_CUP) then
+				clear_choices <= '0';
+	
+				if(cancel = '1') then
+					s_curr_state <= RELEASE;
+				elsif(yes = '1' and no = '0') then
+					s_curr_state <= CALC;
+				elsif(no = '1' and yes = '0') then
+					s_curr_state <= CALC;
+				end if;
+					
+			elsif (s_curr_state = CALC) then
+	
+				if (money_cmd_complete = '1') then
+					if (negative = '1') then
+						s_curr_state <= RELEASE;
+					else 
+						if (zero = '0') then
+							s_curr_state <= OK;
+						else 
+							s_curr_state <= POUR;
+						end if;
+					end if;
+				end if;
+	
+			elsif (s_curr_state = OK) then
+	
+				if(no = '1' or cancel = '1') then
+					s_curr_state <= RELEASE;	
+				elsif(yes = '1') then
+					s_curr_state <= DONATE;
+				end if;	
+	
+			elsif (s_curr_state = DONATE) then
+	
+				if(cancel = '1') then
+					s_curr_state <= RELEASE;
+				elsif(yes = '1' and no = '0') then
+					s_curr_state <= POUR;
+				elsif(no = '1' and yes = '0') then
+					s_curr_state <= GIVE;
+				end if;
+	
+			elsif (s_curr_state = GIVE) then
+					
+				if (money_cmd_complete = '1') then
+					s_curr_state <= POUR;
+				end if;
+			elsif (s_curr_state = POUR) then 
+	
+				if (pour_cmd_complete = '1') then
+					s_curr_state <= MERGE;
+				end if;
+	
+			elsif (s_curr_state = MERGE) then
+				if (money_cmd_complete = '1') then
+					s_curr_state <= INSERT;
+				end if;
+			end if;
+		end if;
+	end process synch;
+		
+end architecture rtl;

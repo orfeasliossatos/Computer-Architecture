@@ -1,0 +1,52 @@
+architecture rtl of debouncer is
+
+	-- Signals --
+	signal s_1_next	: std_logic;
+	signal s_1_now	: std_logic;
+	signal s_2_next	: std_logic;
+	signal s_2_now	: std_logic;
+	signal s_3_next	: std_logic;
+	signal s_3_now	: std_logic;
+	signal s_4_next	: std_logic;
+	signal s_4_now	: std_logic;
+begin
+
+	s_1_next <= button and not(clear);
+
+	dff1 : process(clk) is
+	begin
+		if (rising_edge(clk)) then
+			s_1_now <= s_1_next;
+		end if;
+	end process dff1;
+
+	s_2_next <= s_1_now and not(clear);
+
+	dff2 : process(clk) is
+	begin
+		if (rising_edge(clk)) then
+			s_2_now <= s_2_next;
+		end if;
+	end process dff2;
+
+	s_3_next <= s_2_now and not(clear);
+
+	dff3 : process(clk) is
+	begin
+		if (rising_edge(clk)) then
+			s_3_now <= s_3_next;
+		end if;
+	end process dff3;
+	
+	s_4_next <= (s_4_now or (s_2_now and not(s_3_now))) and not(clear);
+
+	dff4 : process(clk) is
+	begin
+		if (rising_edge(clk)) then
+			s_4_now <= s_4_next;
+		end if;
+	end process dff4;
+
+	button_o <= s_4_now;
+
+end architecture rtl; 

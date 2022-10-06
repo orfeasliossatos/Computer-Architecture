@@ -1,0 +1,66 @@
+architecture rtl of single_coin_type_storage is
+
+	-- Signals --
+	signal s_ovf		: std_logic;
+	signal s_ennovf 	: std_logic;
+	signal s_current_count	: unsigned(4 downto 0);
+	signal s_next_count	: unsigned(4 downto 0);
+	signal s_current_sum	: unsigned(15 downto 0);
+	signal s_next_sum	: unsigned(15 downto 0);
+
+begin
+	-- Signals --
+	s_ovf <= '1' when (s_current_count = "11111" and add_coin = '1')
+			or (s_current_count = "00000" and rem_coin = '1')
+			else '0';
+	s_ennovf <= en and not (s_ovf);
+	fault <= en and s_ovf;
+
+	--- Increment / Decrement FSM ---
+
+	-- DFF --
+	counter_reg : process(clk) is
+	begin
+		if (rising_edge(clk)) then
+			if (reset = '1') then 
+				s_current_count <= to_unsigned(INIT_COUNT, 5);
+			else if (s_ennovf = '1') then
+				s_current_count <= s_next_count;
+				end if;
+			end if;
+		end if;
+	end process counter_reg;
+
+	-- Transition Logic --
+	s_next_count <= s_current_count + 1 when add_coin = '1' else
+			s_current_count - 1 when rem_coin = '1' else
+			s_current_count when add_coin = '0' and rem_coin = '0';
+
+	-- Output Logic --
+	count <= "00000" when en = '0' else std_logic_vector(s_current_count);
+
+
+	--- Add / Subtract FSM ---
+	
+	-- DFF --
+	sum_reg : process(clk) is 
+	begin
+		if (rising_edge(clk)) then
+			if (reset = '1') then 
+				s_current_sum <= INIT_SUM; 
+			else if (s_ennovf = '1') then 
+				s_current_sum <= s_next_sum;
+				end if;
+			end if;
+		end if;
+	end process sum_reg;
+
+	-- Transition Logic --
+	s_next_sum <=	s_current_sum + COIN_VAL when add_coin = '1' else
+			s_current_sum - COIN_VAL when rem_coin = '1' else
+			s_current_sum when add_coin = '0' and rem_coin = '0';
+	
+	-- Output Logic --	
+	sum <= std_logic_vector(s_current_sum);
+
+end architecture rtl;

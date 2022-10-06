@@ -1,0 +1,114 @@
+architecture rtl of coin_storage is
+
+	-- Signals --
+	signal s_coin_type	: std_logic_vector(4 downto 0);
+	
+	signal s_count5f	: std_logic_vector(4 downto 0);
+	signal s_count2f	: std_logic_vector(4 downto 0);
+	signal s_count1f	: std_logic_vector(4 downto 0);
+	signal s_count50c	: std_logic_vector(4 downto 0);
+	signal s_count20c	: std_logic_vector(4 downto 0);
+
+	signal s_sum5f	: std_logic_vector(15 downto 0);
+	signal s_sum2f	: std_logic_vector(15 downto 0);
+	signal s_sum1f	: std_logic_vector(15 downto 0);
+	signal s_sum50c	: std_logic_vector(15 downto 0);
+	signal s_sum20c	: std_logic_vector(15 downto 0);
+
+	signal s_fault5f	: std_logic;
+	signal s_fault2f	: std_logic;
+	signal s_fault1f	: std_logic;
+	signal s_fault50c	: std_logic;
+	signal s_fault20c	: std_logic;
+
+	-- Components --
+	component single_coin_type_storage is
+		generic(INIT_COUNT : integer;
+	        	INIT_SUM   : unsigned(15 downto 0);
+		        COIN_VAL   : unsigned(15 downto 0));
+		port(clk	: in std_logic;
+		     reset	: in std_logic;
+		     en		: in std_logic;
+		     add_coin	: in std_logic;
+		     rem_coin	: in std_logic;
+		     count	: out std_logic_vector(4 downto 0);
+		     sum	: out std_logic_vector(15 downto 0);
+		     fault	: out std_logic);
+	end component;
+
+begin
+	-- Signals --
+	s_coin_type <= coin_type when en = '1' else "00000";
+
+	-- Outputs --
+	fault <= s_fault5f or s_fault2f or s_fault1f or s_fault50c or s_fault20c;
+	count <= s_count5f or s_count2f or s_count1f or s_count50c or s_count20c;
+	sum <= std_logic_vector(unsigned(s_sum5f) + unsigned(s_sum2f) + unsigned(s_sum1f) + unsigned(s_sum50c) + unsigned(s_sum20c)); 
+
+	-- Single Coin Type Storage Instances --
+	five_storage : single_coin_type_storage
+		generic map ( 	INIT_COUNT	=> INIT_COUNTS(4),
+				INIT_SUM	=> INIT_SUMS(4),
+				COIN_VAL	=> five)
+		port map (	clk 		=> clk,
+				reset 		=> reset,
+				en 		=> s_coin_type(4),
+				add_coin 	=> add_coin,
+				rem_coin 	=> rem_coin,
+				count 		=> s_count5f,
+				sum 		=> s_sum5f,
+				fault		=> s_fault5f);
+
+	two_storage : single_coin_type_storage
+		generic map ( 	INIT_COUNT	=> INIT_COUNTS(3),
+				INIT_SUM	=> INIT_SUMS(3),
+				COIN_VAL	=> two)
+		port map (	clk 		=> clk,
+				reset 		=> reset,
+				en 		=> s_coin_type(3),
+				add_coin 	=> add_coin,
+				rem_coin 	=> rem_coin,
+				count 		=> s_count2f,
+				sum 		=> s_sum2f,
+				fault		=> s_fault2f);
+
+	one_storage : single_coin_type_storage
+		generic map ( 	INIT_COUNT	=> INIT_COUNTS(2),
+				INIT_SUM	=> INIT_SUMS(2),
+				COIN_VAL	=> one)
+		port map (	clk 		=> clk,
+				reset 		=> reset,
+				en 		=> s_coin_type(2),
+				add_coin 	=> add_coin,
+				rem_coin 	=> rem_coin,
+				count 		=> s_count1f,
+				sum 		=> s_sum1f,
+				fault		=> s_fault1f);
+
+	half_storage : single_coin_type_storage
+		generic map ( 	INIT_COUNT	=> INIT_COUNTS(1),
+				INIT_SUM	=> INIT_SUMS(1),
+				COIN_VAL	=> half)
+		port map (	clk 		=> clk,
+				reset 		=> reset,
+				en 		=> s_coin_type(1),
+				add_coin 	=> add_coin,
+				rem_coin 	=> rem_coin,
+				count 		=> s_count50c,
+				sum 		=> s_sum50c,
+				fault		=> s_fault50c);
+
+	fifth_storage : single_coin_type_storage
+		generic map ( 	INIT_COUNT	=> INIT_COUNTS(0),
+				INIT_SUM	=> INIT_SUMS(0),
+				COIN_VAL	=> fifth)
+		port map (	clk 		=> clk,
+				reset 		=> reset,
+				en 		=> s_coin_type(0),
+				add_coin 	=> add_coin,
+				rem_coin 	=> rem_coin,
+				count 		=> s_count20c,
+				sum 		=> s_sum20c,
+				fault 		=> s_fault20c);
+	
+end architecture rtl;

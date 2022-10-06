@@ -1,0 +1,316 @@
+C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/timed_button-rtl.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/timed_button-rtl.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Compiling architecture rtl of timed_button
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Loading entity timed_button
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/storage_ctl-rtl.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\Users\oilio\OneDrive\Documents\DSD\TP78\templates\architectures\storage_ctl-rtl.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Compiling architecture rtl of storage_ctl
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Loading entity storage_ctl
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/machine-entity.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/machine-entity.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Compiling entity machine
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/coin_storage-entity.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/coin_storage-entity.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Compiling entity coin_storage
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/led_driver-rtl.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/led_driver-rtl.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Compiling architecture rtl of led_driver
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Loading entity led_driver
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/bcd_to_7seg-rtl.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/bcd_to_7seg-rtl.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Compiling architecture rtl of bcd_to_7seg
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Loading entity bcd_to_7seg
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/debouncer-entity.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/debouncer-entity.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Compiling entity debouncer
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/bcd_to_7seg-entity.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/bcd_to_7seg-entity.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Compiling entity bcd_to_7seg
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/bin_to_bcd-rtl.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/bin_to_bcd-rtl.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Compiling architecture rtl of bin_to_bcd
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Loading entity bin_to_bcd
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/timer-entity.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/timer-entity.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Compiling entity timer
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/money_storage-rtl.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\Users\oilio\OneDrive\Documents\DSD\TP78\templates\architectures\money_storage-rtl.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Compiling architecture rtl of money_storage
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Loading entity money_storage
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/drink_preparation-rtl.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/drink_preparation-rtl.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Compiling architecture rtl of drink_preparation
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Loading entity drink_preparation
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/main_fsm-entity.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/main_fsm-entity.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Compiling entity main_fsm
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/bin_to_bcd-entity.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/bin_to_bcd-entity.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Compiling entity bin_to_bcd
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/disp_driver-entity.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/disp_driver-entity.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Compiling entity disp_driver
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/machine-rtl.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\Users\oilio\OneDrive\Documents\DSD\TP78\templates\architectures\machine-rtl.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Compiling architecture rtl of machine
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Loading entity machine
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/drink_preparation-entity.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/drink_preparation-entity.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Compiling entity drink_preparation
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/money_storage-entity.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\Users\oilio\OneDrive\Documents\DSD\TP78\templates\entities\money_storage-entity.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Compiling entity money_storage
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/debouncer-rtl.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/debouncer-rtl.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Compiling architecture rtl of debouncer
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Loading entity debouncer
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/single_coin_type_storage-rtl.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/single_coin_type_storage-rtl.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Compiling architecture rtl of single_coin_type_storage
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Loading entity single_coin_type_storage
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/timed_button-entity.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/timed_button-entity.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Compiling entity timed_button
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/single_coin_type_storage-entity.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/single_coin_type_storage-entity.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Compiling entity single_coin_type_storage
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/storage_ctl-entity.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/storage_ctl-entity.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Compiling entity storage_ctl
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/timer-rtl.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/timer-rtl.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Compiling architecture rtl of timer
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Loading entity timer
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/main_fsm-rtl.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\Users\oilio\OneDrive\Documents\DSD\TP78\templates\architectures\main_fsm-rtl.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Compiling architecture rtl of main_fsm
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Loading entity main_fsm
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/led_driver-entity.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/led_driver-entity.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Compiling entity led_driver
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/disp_driver-rtl.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/disp_driver-rtl.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Compiling architecture rtl of disp_driver
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Loading entity disp_driver
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/sum_splitter-rtl.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/sum_splitter-rtl.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Compiling architecture rtl of sum_splitter
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Loading entity sum_splitter
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/sum_splitter-entity.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/entities/sum_splitter-entity.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Compiling entity sum_splitter
+
+} {} {}} C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/coin_storage-rtl.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/oilio/OneDrive/Documents/DSD/TP78/templates/architectures/coin_storage-rtl.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Compiling architecture rtl of coin_storage
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package fixed_point_pkg
+-- Loading entity coin_storage
+
+} {} {}}

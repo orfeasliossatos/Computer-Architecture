@@ -1,0 +1,179 @@
+architecture rtl of storage_ctl is
+
+	-- Signals --
+	signal s_count_2, s_count_1, s_count_05, s_count_02 : unsigned(4 downto 0);
+	signal s_change_count_2, s_change_count_1, s_change_count_05, s_change_count_02 : unsigned(4 downto 0);
+	signal s_give_count_2, s_give_count_1, s_give_count_05, s_give_count_02 : unsigned(4 downto 0);
+	signal s_curr_cptr : std_logic_vector(4 downto 0);
+	signal s_change_sum : std_logic_vector(20 downto 0);
+	
+	-- Main FSM Commands & Inputs --
+	signal s_cmd_served, s_cmd_complete : std_logic;
+
+	-- Change --
+	signal s_true_change : signed(15 downto 0);
+	signal s_remain_change : unsigned(15 downto 0);
+
+begin
+	-- Coin Pointer --
+	cptr <= in_coin_type when insert_coin = '1' else s_curr_cptr;
+
+	-- Storage Enable --
+	temp_storage_en <= '1' 	when insert_coin = '1' or give_change = '1' or merge_coins = '1' or release_coins = '1' 
+				else '0';
+	main_storage_en <= '1' 	when give_change = '1' or merge_coins = '1' 
+				else '0';
+
+	-- Add / Remove --
+	temp_storage_add_coin <= '1' 	when insert_coin = '1' 
+					else '0';
+	temp_storage_rem_coin <= '1' 	when temp_storage_count > "00000" and (merge_coins = '1' or release_coins = '1') and s_cmd_complete = '0' 
+					else '0';
+	
+	main_storage_add_coin <= '1' 	when temp_storage_count > "00000" and merge_coins = '1' and s_cmd_complete = '0'
+					else '0';
+	main_storage_rem_coin <= '1' 	when give_change = '1' and s_cmd_complete = '0' 
+					else '0';
+
+	-- Main FSM Commands & Inputs --
+	cmd_complete <= s_cmd_complete;
+	zero <= '1' 	when s_true_change = "0000000000000000" 
+			else '0';
+	negative <= '1' when s_true_change < 0000000000000000 
+			else '0';
+
+
+	-- Display --
+	disp_on <= '1' 	when show_change = '1' or insert_coin = '1' 
+			else '0';
+
+
+	s_change_sum <= std_logic_vector(s_count_2 * two + s_count_1 * one + s_count_05 * half + s_count_02 * fifth) when s_true_change >= 0000000000000000 
+				else "000000000000000000000";
+	disp_sum <=  s_change_sum(15 downto 0) when show_change = '1' 
+			else temp_storage_sum when insert_coin = '1' 
+			else "0000000000000000";
+	
+	change_count_2 <= std_logic_vector(s_change_count_2) when show_change = '1' else "00000";
+	change_count_1 <= std_logic_vector(s_change_count_1) when show_change = '1' else "00000";
+	change_count_05 <= std_logic_vector(s_change_count_05) when show_change = '1' else "00000";
+	change_count_02 <= std_logic_vector(s_change_count_02) when show_change = '1' else "00000";
+
+
+	-- True Change --
+	s_true_change <= signed(temp_storage_sum) - signed(price); 
+	
+	-- Handshake Protocol --
+	handshake : process (clk)
+	begin
+		if (rising_edge(clk)) then
+			if (reset = '1') then
+				s_curr_cptr <= "10000";
+
+				s_cmd_served <= '0';
+				s_cmd_complete <= '0';
+
+				s_count_2 <= "00000";
+				s_count_1 <= "00000";
+				s_count_05 <= "00000";
+				s_count_02 <= "00000";
+
+				s_change_count_2 	<= "00000";
+				s_change_count_1 	<= "00000";
+				s_change_count_05 	<= "00000";
+				s_change_count_02 	<= "00000";
+
+				s_remain_change 	<= unsigned(s_true_change);
+
+				s_give_count_2 		<= "00000";
+				s_give_count_1 		<= "00000";
+				s_give_count_05 	<= "00000";
+				s_give_count_02 	<= "00000";
+
+			elsif (cmd_served = '1') then
+				-- change_calc --
+				if (calc_change = '1' and s_cmd_complete = '0') then
+					if (s_true_change < 0000000000000000) then
+						s_change_count_2 <= "00000";
+						s_change_count_1 <= "00000";
+						s_change_count_05 <= "00000";
+						s_change_count_02 <= "00000";
+						s_remain_change <= unsigned(s_true_change);
+						s_cmd_complete <= '1';
+
+					elsif (s_true_change = "0000000000000000") then
+						s_change_count_2 <= "00000";
+						s_change_count_1 <= "00000";
+						s_change_count_05 <= "00000";
+						s_change_count_02 <= "00000";
+						
+						s_remain_change <= unsigned(s_true_change);
+						s_cmd_complete <= '1';
+
+						s_count_2 <= "00000";
+						s_count_1 <= "00000";
+						s_count_05 <= "00000";
+						s_count_02 <= "00000";
+
+					else
+						if (s_cmd_served = '0') then
+							s_cmd_served <= '1';
+							s_count_2 <= "00000";
+							s_count_1 <= "00000";
+							s_count_05 <= "00000";
+							s_count_02 <= "00000";
+							s_remain_change <= unsigned(s_true_change);
+						elsif (s_remain_change >= two) then s_count_2 <= s_count_2 + 1; s_remain_change <= s_remain_change - two;
+						elsif (s_remain_change >= one) then s_count_1 <= s_count_1 + 1; s_remain_change <= s_remain_change - one;
+						elsif (s_remain_change >= half) then s_count_05 <= s_count_05 + 1; s_remain_change <= s_remain_change - half;
+						elsif (s_remain_change >= fifth) then s_count_02 <= s_count_02 + 1; s_remain_change <= s_remain_change - fifth;
+						elsif (s_remain_change < fifth) then s_cmd_complete <= '1'; s_change_count_2 <= s_count_2; s_change_count_1 <= s_count_1; s_change_count_05 <= s_count_05; s_change_count_02 <= s_count_02;
+						end if;
+					end if;
+
+				-- give_change --
+				elsif (give_change = '1' and s_cmd_complete = '0') then
+					if (s_give_count_2 < s_change_count_2) then s_curr_cptr <= "01000"; s_give_count_2 <= s_give_count_2 + 1;
+					elsif (s_give_count_1 < s_change_count_1) then s_curr_cptr <= "00100"; s_give_count_1 <= s_give_count_1 + 1;
+					elsif (s_give_count_05 < s_change_count_05) then s_curr_cptr <= "00010"; s_give_count_05 <= s_give_count_05 + 1;
+					elsif (s_give_count_02 < s_change_count_02) then s_curr_cptr <= "00001"; s_give_count_02 <= s_give_count_02 + 1;
+					else
+						s_curr_cptr <= "10000";
+						s_cmd_complete <= '1';
+						s_give_count_2 <= "00000";
+						s_give_count_1 <= "00000";
+						s_give_count_05 <= "00000";
+						s_give_count_02 <= "00000";
+					end if;
+
+				-- merge_coins --
+				elsif (merge_coins = '1' and s_cmd_complete = '0') then
+					if (temp_storage_count = "00000") then
+						if (s_curr_cptr = "10000") then s_curr_cptr <= "01000";
+						elsif (s_curr_cptr = "01000") then s_curr_cptr <= "00100";
+						elsif (s_curr_cptr = "00100") then s_curr_cptr <= "00010";
+						elsif (s_curr_cptr = "00010") then s_curr_cptr <= "00001";
+						elsif (s_curr_cptr = "00001") then s_cmd_complete <= '1'; s_curr_cptr <= "10000";
+						end if;
+					end if;
+
+				-- release_coins --
+				elsif (release_coins = '1' and s_cmd_complete = '0') then
+					if (temp_storage_count = "00000") then
+						if (s_curr_cptr = "10000") then s_curr_cptr <= "01000";
+						elsif (s_curr_cptr = "01000") then s_curr_cptr <= "00100";
+						elsif (s_curr_cptr = "00100") then s_curr_cptr <= "00010";
+						elsif (s_curr_cptr = "00010") then s_curr_cptr <= "00001";
+						elsif (s_curr_cptr = "00001") then s_cmd_complete <= '1';
+						end if;
+					end if;
+				end if;
+			else
+				s_cmd_complete <= '0';
+				s_cmd_served <= '0';
+				s_curr_cptr <= "10000";
+			end if;
+		end if;
+	end process handshake;
+
+end architecture rtl;

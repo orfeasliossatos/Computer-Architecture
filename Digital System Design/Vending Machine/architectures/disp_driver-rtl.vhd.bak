@@ -1,0 +1,79 @@
+architecture rtl of disp_driver is
+
+	-- Conversion Components --
+	component bin_to_bcd is 
+	port(bin   : in std_logic_vector(7 downto 0);
+	     l_bcd : out std_logic_vector(3 downto 0);
+	     u_bcd : out std_logic_vector(3 downto 0));
+	end component bin_to_bcd;
+
+	component bcd_to_7seg is
+	port(en       : in std_logic;
+	     bcd      : in std_logic_vector(3 downto 0);
+	     point_on : in std_logic;
+	     disp     : out std_logic_vector(7 downto 0));
+	end component bcd_to_7seg;
+
+	component sum_splitter is
+	port(sum   : in std_logic_vector(15 downto 0);
+     	     whole : out std_logic_vector(8 downto 0);
+	     frac  : out std_logic_vector(6 downto 0));
+	end component sum_splitter;
+
+	-- Signals --
+	signal s_whole : std_logic_vector(8 downto 0);
+	signal s_frac  : std_logic_vector(6 downto 0);
+	signal s_whole8 : std_logic_vector(7 downto 0);
+	signal s_frac8 : std_logic_vector(7 downto 0);
+
+	signal s_l_bcd_whole : std_logic_vector(3 downto 0);
+	signal s_u_bcd_whole : std_logic_vector(3 downto 0);
+	signal s_l_bcd_frac : std_logic_vector(3 downto 0);
+	signal s_u_bcd_frac : std_logic_vector(3 downto 0);
+
+	signal s_disp_whole : std_logic_vector(7 downto 0);	
+	signal s_disp_fracu : std_logic_vector(7 downto 0);
+	signal s_disp_fracl : std_logic_vector(7 downto 0);
+begin
+
+	-- Port maps --
+	sumsplitter : sum_splitter
+	port map (	sum	=> num,
+			whole	=> s_whole,
+			frac	=> s_frac);
+
+	s_whole8 <= s_whole(7 downto 0);
+	bintobcdwhole : bin_to_bcd
+	port map (	bin 	=> s_whole8,
+			l_bcd	=> s_l_bcd_whole,
+			u_bcd	=> s_u_bcd_whole);
+
+	s_frac8 <= "0" & s_frac;
+	bintobcdfrac : bin_to_bcd
+	port map (	bin 	=> s_frac8,
+			l_bcd	=> s_l_bcd_frac,
+			u_bcd	=> s_u_bcd_frac);
+
+	bcdto7segwhole : bcd_to_7seg
+	port map (	en	=> en,
+			bcd     => s_l_bcd_whole,     
+			point_on => '1',
+     			disp	=> s_disp_whole);
+
+	bcdto7segfracu : bcd_to_7seg
+	port map (	en	=> en,
+			bcd     => s_u_bcd_frac,     
+			point_on => '0',
+     			disp	=> s_disp_fracu);
+
+	bcdto7segfracl : bcd_to_7seg
+	port map (	en	=> en,
+			bcd     => s_l_bcd_frac,     
+			point_on => '0',
+     			disp	=> s_disp_fracl);
+	-- Outputs --
+	whole <= s_disp_whole;
+	frac_disp_u <= s_disp_fracu;
+	frac_disp_l <= s_disp_fracl;
+
+end architecture rtl;
