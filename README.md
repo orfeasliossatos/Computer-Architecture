@@ -1,7 +1,7 @@
-# Digital System Design
+# Computer Architecture
 
-Stopwatch is a digital counter created entirely within Logisim. Activate ticks, hold down the reset button, and on release the mod-5 counter will begin to increase. The "But" button will cause the counter to reverse direction upon hitting a specific number 
+This is a collection of computer architecture projects I carried out during my undergraduate degree in Computer Science at EPFL and the University of Edinburgh. 
 
-The file stopwatch.circ is intended to be loaded with logisim-evolution (https://github.com/reds-heig/logisim-evolution). 
+We used Logisim, Modelsim, and Quartus to program EPFL "Gecko" FPGAs, simulating various digital systems - a vending machine, the Game of Life, an interrupt handler, a multicycle processor, and a pipelined processor. Designed by professors Paolo Ienne (paolo.ienne@epfl.ch), Mirjana Stojilovic (mirjana.stojilovic@epfl.ch), and Ties Jan Henderikus Kluter (ties.kluter@epfl.ch), these projects were carried out in collaboration with Henrique Da Silva Gameiro (henrique.dasilvagameiro@epfl.ch), Kelvin Kappeler (kelvin.kappeler@epfl.ch), and Alexis Favre (alexis.favre@epfl.ch).
 
-Vending Machine is a simulated vending machine intended to run on EPFL "Gecko" FPGAs. You can open the files in Modelsim or Quartus and run some scripts to see how the system works.
+In the University of Edinburgh I studied parallel architectures under Vijayanand Nagarajan, producing two written reports. The first is an evaluation of past predictions of future processors. The second is an investigation into the Coherence and Consistency guarentees of DICE computers at the University of Edinburgh.
